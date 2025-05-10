@@ -22,6 +22,9 @@
       position: relative;
       overflow-x: hidden;
       line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     /* Темная и светлая темы */
@@ -40,6 +43,7 @@
       margin: 0 auto;
       position: relative;
       z-index: 1;
+      width: 100%;
     }
 
     /* Заголовок */
@@ -126,15 +130,9 @@
       flex-direction: column;
       gap: 15px;
       animation: fadeIn 1s ease-out;
-      position: relative;
       z-index: 1;
       transition: background 0.5s ease;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      align-items: center;
-      justify-content: center;
+      margin: 20px 0;
     }
 
     body.dark-theme .hosting-container {
@@ -168,10 +166,6 @@
       font-size: 1.5rem;
       cursor: pointer;
       transition: transform 0.3s ease;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      margin: 5px;
     }
 
     .theme-toggle:hover {
@@ -184,6 +178,7 @@
       gap: 15px;
       width: 100%;
       max-width: 600px;
+      margin: 0 auto;
     }
 
     .feature-item {
@@ -225,8 +220,11 @@
       border-radius: 8px;
       cursor: pointer;
       transition: background 0.2s ease, transform 0.2s ease;
-      text-decoration: none  none;
-      margin-top: 20px;
+      text-decoration: none;
+      margin: 20px auto;
+      display: block;
+      text-align: center;
+      width: fit-content;
     }
 
     .contact-button:hover {
@@ -251,7 +249,7 @@
       }
 
       .hosting-container {
-        margin: 0;
+        margin: 10px 0;
         padding: 15px;
         border-radius: 16px;
       }
@@ -289,7 +287,7 @@
         padding: 20px;
       }
 
-      . hosting-header h2 {
+      .hosting-header h2 {
         font-size: 1.6rem;
       }
 
@@ -374,7 +372,7 @@
           <p>Наша команда готова помочь вам 24/7 через чат, email или Telegram.</p>
         </div>
       </div>
-      <a href="https://t.me/@xs_ilya" class="contact-button">Связаться с нами</a>
+      <a href="https://t.me/xs_ilya" class="contact-button">Связаться с нами</a>
     </div>
   </div>
 
@@ -410,5 +408,7 @@
   </script>
 </body>
 </html>
+
+
 
 
