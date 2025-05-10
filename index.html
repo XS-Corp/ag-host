@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AG Host - Надежный хостинг для вашего сайта</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* Обнуление стилей */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Основной стиль страницы */
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      padding: 20px;
+      transition: background 0.3s ease, color 0.3s ease;
+      position: relative;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* Темная и светлая темы */
+    body.dark-theme {
+      background: linear-gradient(135deg, #2c2c54, #1a1a2e);
+      color: #e0e0e0;
+    }
+
+    body.light-theme {
+      background: linear-gradient(135deg, #e8f0ff, #d9e2ff);
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Заголовок */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      background: linear-gradient(90deg, #72b6ff, #0059b9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .theme-toggle {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 4px;
+      transition: background 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Частицы */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(167, 199, 231, 0.5);
+      border-radius: 50%;
+      animation: float 12s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 1.4rem;
+      }
+
+      .theme-toggle {
+        font-size: 1.1rem;
+      }
+
+      .particle {
+        width: 2px !important;
+        height: 2px !important;
+      }
+    }
+
+    .hosting-container {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      animation: fadeIn 1s ease-out;
+      position: relative;
+      z-index: 1;
+      transition: background 0.5s ease;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      align-items: center;
+      justify-content: center;
+    }
+
+    body.dark-theme .hosting-container {
+      background: rgba(15, 12, 41, 0.85);
+      backdrop-filter: blur(10px);
+    }
+
+    body.light-theme .hosting-container {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hosting-header h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      text-align: center;
+      background: linear-gradient(90deg, #72b6ff, #0059b9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      margin: 5px;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.2);
+    }
+
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .feature-item {
+      padding: 15px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      transition: transform 0.3s ease;
+      animation: slideIn 0.5s ease-out;
+    }
+
+    .feature-item:hover {
+      transform: scale(1.02);
+    }
+
+    .feature-item h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #34C759;
+      margin-bottom: 5px;
+    }
+
+    .feature-item p {
+      font-size: 1rem;
+      color: inherit;
+    }
+
+    body.light-theme .feature-item {
+      background: rgba(0, 0, 0, 0.05);
+      color: #1f2937;
+    }
+
+    .contact-button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      background: linear-gradient(90deg, #007AFF, #34C759);
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+      text-decoration: none  none;
+      margin-top: 20px;
+    }
+
+    .contact-button:hover {
+      background: linear-gradient(90deg, #34C759, #007AFF);
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 51, 255, 0.5);
+    }
+
+    .contact-button:active {
+      transform: scale(1);
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Адаптивность */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      .hosting-container {
+        margin: 0;
+        padding: 15px;
+        border-radius: 16px;
+      }
+
+      .hosting-header h2 {
+        font-size: 1.4rem;
+      }
+
+      .theme-toggle {
+        font-size: 1.2rem;
+      }
+
+      .feature-item h3 {
+        font-size: 1rem;
+      }
+
+      .feature-item p {
+        font-size: 0.9rem;
+      }
+
+      .contact-button {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+      }
+
+      .particle {
+        width: 3px !important;
+        height: 3px !important;
+      }
+    }
+
+    @media (min-width: 600px) and (max-width: 1024px) {
+      .hosting-container {
+        max-width: 90%;
+        padding: 20px;
+      }
+
+      . hosting-header h2 {
+        font-size: 1.6rem;
+      }
+
+      .feature-item h3 {
+        font-size: 1.1rem;
+      }
+
+      .particle {
+        width: 4px !important;
+        height: 4px !important;
+      }
+    }
+
+    @media (min-width: 1920px) {
+      .hosting-container {
+        max-width: 1000px;
+        padding: 30px;
+      }
+
+      .hosting-header h2 {
+        font-size: 2.2rem;
+      }
+
+      .theme-toggle {
+        font-size: 2rem;
+      }
+
+      .feature-item h3 {
+        font-size: 1.4rem;
+      }
+
+      .feature-item p {
+        font-size: 1.2rem;
+      }
+
+      .contact-button {
+        font-size: 1.2rem;
+        padding: 15px 30px;
+      }
+
+      .particle {
+        width: 6px !important;
+        height: 6px !important;
+      }
+    }
+  </style>
+</head>
+<body class="dark-theme">
+  <div id="particles"></div>
+  <div class="container">
+    <div class="header">
+      <h1>AG Host</h1>
+      <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    </div>
+    <div class="hosting-container">
+      <div class="hosting-header">
+        <h2>AG Host - Ваш идеальный хостинг</h2>
+      </div>
+      <div class="features-list">
+        <div class="feature-item">
+          <h3>До 100 ГБ места</h3>
+          <p>Храните все ваши данные с нашими просторными тарифами, подходящими для любых проектов.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Резервные копии</h3>
+          <p>Автоматическое создание резервных копий ежедневно, чтобы ваши данные всегда были в безопасности.</p>
+        </div>
+        <div class="feature-item">
+          <h3>99.9% Uptime</h3>
+          <p>Гарантированная доступность вашего сайта круглосуточно благодаря надежным серверам.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Сверхбыстрая загрузка</h3>
+          <p>Оптимизированные SSD-диски и передовые технологии для молниеносной скорости.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Бесплатный SSL</h3>
+          <p>Защитите ваш сайт и повысьте доверие пользователей с бесплатным SSL-сертификатом.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Круглосуточная поддержка</h3>
+          <p>Наша команда готова помочь вам 24/7 через чат, email или Telegram.</p>
+        </div>
+      </div>
+      <a href="https://t.me/@xs_ilya" class="contact-button">Связаться с нами</a>
+    </div>
+  </div>
+
+  <script>
+    // Частицы
+    const particleContainer = document.getElementById('particles');
+    const particleCount = window.innerWidth < 600 ? 10 : 30;
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.width = `${Math.random() * 4 + 1}px`;
+      particle.style.height = particle.style.width;
+      particle.style.left = `${Math.random() * 100}vw`;
+      particle.style.top = `${Math.random() * 100}vh`;
+      particle.style.animationDelay = `${Math.random() * 5}s`;
+      particleContainer.appendChild(particle);
+    }
+
+    // Переключение темы
+    const themeToggle = document.querySelector('.theme-toggle');
+    function toggleTheme() {
+      document.body.classList.toggle('dark-theme');
+      document.body.classList.toggle('light-theme');
+      const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+      localStorage.setItem('theme', theme);
+      themeToggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+    }
+
+    // Загрузка темы
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.body.classList.add(savedTheme + '-theme');
+    themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+  </script>
+</body>
+</html>
+
+
